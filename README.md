@@ -1,8 +1,8 @@
 # echo
 Echo Docs:
 
-1: Comments
-  1.1 Single Line Comments
+1: Comments /n
+  1.1 Single Line Comments /n
     Use // to comment out one line
   1.2 Multi-Line Comments
     Use /* to begin a multi-line comment and */ to end it

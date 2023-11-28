@@ -53,10 +53,17 @@ for i in range(len(executor)):
                             varValue.append(executor[i][j])
                             j = j+1
                         varValue = "".join(varValue)
+                        if (varValue == "True") or (varValue == "False"):
+                            varValue = "".join(varValue)
+                            print("habfajfebifddqwn")
+                        else:
+                            errors.append([i, "ValueError", "Type 'bool' cannot have value '" + varValue + "'. Can only have 'True' or 'False'"])
+                            print("habfajfebiqwn")
+                            continue
                         varName = "".join(varName)
                         debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
-                        for k in range(len(variables)):
-                            if variables[k][1] == varName:
+                        for k in range(len(listVariables)):
+                            if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
@@ -77,8 +84,8 @@ for i in range(len(executor)):
                         varValue = "".join(varValue)
                         varName = "".join(varName)
                         debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
-                        for k in range(len(variables)):
-                            if variables[k][1] == varName:
+                        for k in range(len(listVariables)):
+                            if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:

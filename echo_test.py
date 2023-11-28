@@ -55,10 +55,8 @@ for i in range(len(executor)):
                         varValue = "".join(varValue)
                         if (varValue == "True") or (varValue == "False"):
                             varValue = "".join(varValue)
-                            print("habfajfebifddqwn")
                         else:
                             errors.append([i, "ValueError", "Type 'bool' cannot have value '" + varValue + "'. Can only have 'True' or 'False'"])
-                            print("habfajfebiqwn")
                             continue
                         varName = "".join(varName)
                         debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)

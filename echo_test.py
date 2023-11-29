@@ -79,7 +79,11 @@ for i in range(len(executor)):
                         while executor[i][j] != ";":
                             varValue.append(executor[i][j])
                             j = j+1
-                        varValue = "".join(varValue)
+                        if type(varValue) == type("Hello World"):
+                            varValue = "".join(varValue)
+                        else:
+                            errors.append([i, "ValueError", "Type 'string' cannot have value '" + varValue + "'. Can only have strings."])
+                            continue
                         varName = "".join(varName)
                         debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
                         for k in range(len(listVariables)):

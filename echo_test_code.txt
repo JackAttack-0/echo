@@ -1,4 +1,9 @@
-var ?chicken = True;
+var ?chicken = 44;
+var ?lama = True;
+var #eagle = 100;
+var #cougar = "lol";
+var _tree = "oak";
+var _iron = 94;
 // Comment
 
 /*

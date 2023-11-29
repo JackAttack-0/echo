@@ -79,6 +79,7 @@ for i in range(len(executor)):
                         while executor[i][j] != ";":
                             varValue.append(executor[i][j])
                             j = j+1
+                        varValue = "".join(varValue)
                         if type(varValue) == type("Hello World"):
                             varValue = "".join(varValue)
                         else:
@@ -105,6 +106,7 @@ for i in range(len(executor)):
                         while executor[i][j] != ";":
                             varValue.append(executor[i][j])
                             j = j+1
+                        varValue = "".join(varValue)
                         if type(varValue) == type(100):
                             varValue = "".join(varValue)
                         else:
@@ -117,7 +119,7 @@ for i in range(len(executor)):
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
-                    errors.append(i, "IndexError", "Index out of range")
+                    errors.append([i, "IndexError", "Index out of range"])
                 listVariables.append([varType, varName, varName])
     except IndexError:
         if executor[i] == []:

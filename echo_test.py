@@ -93,6 +93,32 @@ for i in range(len(executor)):
                 except IndexError:
                     errors.append(i, "IndexError", "Index out of range")
                 listVariables.append([varType, varName, varName])
+            if executor[i][4] == "#":
+                varType = "int"
+                j = 5
+                while executor[i][j] != " ":
+                    varName.append(executor[i][j])
+                    j = j+1
+                try:
+                    if "".join(executor[i][j:j+3]) == " = ":
+                        j = j+3
+                        while executor[i][j] != ";":
+                            varValue.append(executor[i][j])
+                            j = j+1
+                        if type(varValue) == type(100):
+                            varValue = "".join(varValue)
+                        else:
+                            errors.append([i, "ValueError", "Type 'int' cannot have value '" + varValue + "'. Can only have intergers."])
+                            continue
+                        varName = "".join(varName)
+                        debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
+                        for k in range(len(listVariables)):
+                            if listVariables[k][1] == varName:
+                                errors.append(i, "VariableError", "Variable alreay defined")
+                                continue
+                except IndexError:
+                    errors.append(i, "IndexError", "Index out of range")
+                listVariables.append([varType, varName, varName])
     except IndexError:
         if executor[i] == []:
             debug.append("Empty Line")

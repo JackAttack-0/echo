@@ -59,14 +59,14 @@ for i in range(len(executor)):
                             errors.append([i, "ValueError", "Type 'bool' cannot have value '" + varValue + "'. Can only have 'True' or 'False'"])
                             continue
                         varName = "".join(varName)
-                        debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
+                        debug.append("Variable " + varName + " with type " + varType + " created with value " + varValue)
                         for k in range(len(listVariables)):
                             if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
                     errors.append(i, "IndexError", "Index out of range")
-                listVariables.append([varType, varName, varName])
+                listVariables.append([varType, varName, varValue])
             if executor[i][4] == "_":
                 varType = "string"
                 j = 5
@@ -86,14 +86,14 @@ for i in range(len(executor)):
                             errors.append([i, "ValueError", "Type 'string' cannot have value '" + varValue + "'. Can only have strings."])
                             continue
                         varName = "".join(varName)
-                        debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
+                        debug.append("Variable " + varName + " with type " + varType + " created with value " + varValue)
                         for k in range(len(listVariables)):
                             if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
                     errors.append(i, "IndexError", "Index out of range")
-                listVariables.append([varType, varName, varName])
+                listVariables.append([varType, varName, varValue])
             if executor[i][4] == "#":
                 varType = "int"
                 j = 5
@@ -113,14 +113,14 @@ for i in range(len(executor)):
                             errors.append([i, "ValueError", "Type 'int' cannot have value '" + varValue + "'. Can only have intergers."])
                             continue
                         varName = "".join(varName)
-                        debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
+                        debug.append("Variable " + varName + " with type " + varType + " created with value " + varValue)
                         for k in range(len(listVariables)):
                             if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
                     errors.append([i, "IndexError", "Index out of range"])
-                listVariables.append([varType, varName, varName])
+                listVariables.append([varType, varName, varValue])
             if executor[i][4] == "-":
                 varType = "float"
                 j = 5
@@ -140,14 +140,35 @@ for i in range(len(executor)):
                             errors.append([i, "ValueError", "Type 'float' cannot have value '" + varValue + "'. Can only have intergers."])
                             continue
                         varName = "".join(varName)
-                        debug.append("Variable " + varName + " with type " + varType + " created wth value " + varValue)
+                        debug.append("Variable " + varName + " with type " + varType + " created with value " + varValue)
                         for k in range(len(listVariables)):
                             if listVariables[k][1] == varName:
                                 errors.append(i, "VariableError", "Variable alreay defined")
                                 continue
                 except IndexError:
                     errors.append([i, "IndexError", "Index out of range"])
-                listVariables.append([varType, varName, varName])
+                listVariables.append([varType, varName, varValue])
+            for l in range(len(listVariables)):
+                if executor[i][:len(listVariables[l])]:
+                    if executor[i][0] == "?":
+                        try:
+                            if "".join(executor[i][j:j+3]) == " = ":
+                                j = j+3
+                            while executor[i][j] != ";":
+                                varValue.append(executor[i][j])
+                                j = j+1
+                                varValue = "".join(varValue)
+                                if type(varValue) == type(True):
+                                    varValue = "".join(varValue)
+                                    listVariables[l] = ([varType, varName, varValue])
+                                else:
+                                    errors.append([i, "ValueError", "Type 'float' cannot have value '" + varValue + "'. Can only have intergers."])
+                                    continue
+                                varName = "".join(varName)
+                                debug.append("Variable " + varName + " with type " + varType + " set to value " + varValue)
+                except IndexError:
+                    errors.append([i, "IndexError", "Index out of range"])
+
     except IndexError:
         if executor[i] == []:
             debug.append("Empty Line")
